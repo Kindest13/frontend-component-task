@@ -10,6 +10,7 @@ export interface ListRole {
   change: boolean;
   folders: Right[];
   gems: Right[];
+  [key: string]: Right[] | any;
 }
 
 export type GetCustomRole = (list: ListRole[]) => ListRole;
