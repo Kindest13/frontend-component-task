@@ -1,0 +1,16 @@
+.checkboxes_wrapper {
+  margin: 1.5rem 0;
+}
+
+.checkboxes_wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.checkboxes_label {
+  font-weight: bold;
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
