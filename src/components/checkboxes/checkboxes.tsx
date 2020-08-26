@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Checkbox from './checkbox/checkbox';
 import {
   CheckboxesProps,
@@ -6,7 +6,7 @@ import {
 } from './types';
 import './checkboxes.css';
 
-export default ({ type, checks, getCheckedClass, onCheck }: CheckboxesProps) => (
+const checkboxes: FC<CheckboxesProps> = ({ type, checks, getCheckedClass, onCheck }) => (
   <div className="checkboxes_wrapper">
     <label className="checkboxes_label">{type}</label>
     <div className="checkboxes">
@@ -26,3 +26,5 @@ export default ({ type, checks, getCheckedClass, onCheck }: CheckboxesProps) => 
     </div>
   </div>
 );
+
+export default checkboxes;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC} from 'react';
 import Select from '../../components/select/select';
 import Checkboxes from '../../components/checkboxes/checkboxes';
 import {
@@ -9,7 +9,7 @@ import {
 } from './types';
 import './customization.css';
 
-export default ({ onSelect, roles, selectedRole, onCustomChange }: CustomizationProps) => {
+const Customization: FC<CustomizationProps> = ({ onSelect, roles, selectedRole, onCustomChange }) => {
   const [opened, setOpened] = useState<boolean>(false);
   const onOpenSelect: OnOpenSelect = () => setOpened(!opened);
   const onCheck: OnCheck = (label, value, type) => selectedRole.change && onCustomChange(label, value, type);
@@ -37,3 +37,5 @@ export default ({ onSelect, roles, selectedRole, onCustomChange }: Customization
     </div>
   );
 }
+
+export default Customization;

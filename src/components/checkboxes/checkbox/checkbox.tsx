@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import unchecked_icon from '../../../materials/uncheck.png';
 import checked_icon from '../../../materials/check.png';
 import CheckboxProps from './types';
 import './checkbox.css';
 
-export default ({ label, value, getCheckedClass, onCheck, type }: CheckboxProps) => (
+const checkbox: FC<CheckboxProps> = ({ label, value, getCheckedClass, onCheck, type }) => (
   <div
     onClick={() => onCheck(label, value, type)}
     className="checkbox">
@@ -20,3 +20,5 @@ export default ({ label, value, getCheckedClass, onCheck, type }: CheckboxProps)
     </label>
   </div>
 );
+
+export default checkbox;

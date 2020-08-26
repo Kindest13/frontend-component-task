@@ -1,7 +1,7 @@
 import {ListRole, OnChangeSelected} from '../../containers/form/types';
 import {OnOpenSelect} from '../../containers/customization/types';
 
-export interface SelectProps {
+export default interface SelectProps {
   onSelect: OnChangeSelected;
   roles: ListRole[];
   selectedRole: ListRole;

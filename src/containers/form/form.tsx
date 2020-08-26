@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import Customization from '../customization/customization';
 import Save from '../../components/save/save';
 import {
@@ -11,7 +11,7 @@ import {
 } from './types';
 import './form.css';
 
-export default () => {
+const Form: FC<{}> = () => {
   const [listRoles, setListRoles] = useState<ListRole[]>([
     {
       id: 1,
@@ -122,6 +122,9 @@ export default () => {
   const [selectedRole, setSelectedRole] = useState<ListRole>(listRoles[0]);
   const getCustomRole: GetCustomRole = (list) => list.find(({role}) => role === 'Custom');
   const onChangeSelected: OnChangeSelected = (selected) => {
+    if(typeof selected !== "string") {
+      selected = selected.currentTarget.getAttribute("data-value");
+    }
     const newRole = listRoles.find(({role}) => role === selected);
     setSelectedRole(newRole);
     return newRole;
@@ -131,15 +134,15 @@ export default () => {
     const checksType: string = type.toLowerCase();
     const newListRoles: ListRole[] = JSON.parse(JSON.stringify(listRoles));
     const customRole: ListRole = getCustomRole(newListRoles);
-    const customRoleType: Right[] = customRole[checksType];
-    customRoleType.forEach((right: Right) => {
-        if(right.hasOwnProperty(key)) {
-          right[key] = !value;
-        }
-        return right;
-      })
-      setListRoles(newListRoles);
-      setSelectedRole(getCustomRole(newListRoles));
+    const customRoleRightsType: Right[] = customRole[checksType];
+    for(let i = 0, length = customRoleRightsType.length; i < length; i++) {
+      const right = customRoleRightsType[i];
+      if(right.hasOwnProperty(key)) {
+        right[key] = !value;
+      }
+    }
+    setListRoles(newListRoles);
+    setSelectedRole(getCustomRole(newListRoles));
   }
 
   const onSave: OnSave = () => onChangeSelected(selectedRole.role);
@@ -155,3 +158,5 @@ export default () => {
     </div>
   );
 }
+
+export default Form;
