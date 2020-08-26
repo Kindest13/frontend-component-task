@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from "./containers/main/main";
+import Form from "./containers/form/form";
+import './app.css';
 
-ReactDOM.render(<Main />, document.getElementById("app"));
+ReactDOM.render(<Form />, document.getElementById("app"));
