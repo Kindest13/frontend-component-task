@@ -14,7 +14,7 @@ export interface ListRole {
 
 export type GetCustomRole = (list: ListRole[]) => ListRole;
 
-export type OnChangeSelected = (selected: string) => ListRole;
+export type OnChangeSelected = (selected: string | MouseEvent<HTMLLIElement>) => ListRole;
 
 export type OnSave = (event: MouseEvent<HTMLButtonElement>) => ListRole;
 

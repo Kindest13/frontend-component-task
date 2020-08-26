@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import collapse_arrow from '../../materials/collapse-arrow.svg';
-import {
-  SelectProps
-} from './types';
+import SelectProps from './types';
 import './select.css';
 
-export default ({ onSelect, roles, selectedRole, onOpenSelect, openedClass }: SelectProps) => (
+const select: FC<SelectProps> = ({ onSelect, roles, selectedRole, onOpenSelect, openedClass }) => (
   <div className="select-wrapper">
     <label
       htmlFor="select"
@@ -20,7 +18,7 @@ export default ({ onSelect, roles, selectedRole, onOpenSelect, openedClass }: Se
           {
             roles.filter(({role}) => role !== selectedRole.role).map(({role, id}) => (
               <li
-                onClick={({target}) => onSelect(target.getAttribute("data-value"))}
+                onClick={onSelect}
                 key={id}
                 className="option"
                 data-value={role}>
@@ -37,3 +35,5 @@ export default ({ onSelect, roles, selectedRole, onOpenSelect, openedClass }: Se
     </div>
   </div>
 );
+
+export default select;
