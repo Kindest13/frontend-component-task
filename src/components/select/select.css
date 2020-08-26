@@ -45,10 +45,12 @@
 
 .select_dropdown-list .option:hover {
   background-color: #fa6d30;
+  color: #ffffff;
 }
 
 .select_dropdown-list .option:first-child:hover {
   background-color: #ffffff;
+  color: #000000;
   cursor: default;
 }
 

@@ -8,7 +8,7 @@
     "email": "vlad@shelf.io",
     "url": "https://shelf.io"
   },
-  "main": "lib",
+  "main": "lib/index.ts",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
@@ -21,6 +21,7 @@
     "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
     "prepack": "yarn build",
+    "rbuild": "rollup -c",
     "start": "webpack-dev-server --mode development --open --hot",
     "test": "TZ=UTC jest src",
     "type-check": "tsc --noEmit",
@@ -72,6 +73,10 @@
     "jest": "26.2.2",
     "lint-staged": "10.2.6",
     "prettier": "2.0.5",
+    "rollup": "^2.26.5",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-uglify": "^6.0.4",
     "style-loader": "^1.2.1",
     "typescript": "3.8.3",
     "webpack": "^4.44.1",
