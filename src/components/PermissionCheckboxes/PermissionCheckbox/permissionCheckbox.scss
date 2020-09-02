@@ -1,0 +1,21 @@
+.permission-checkbox {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  margin-left: 0;
+
+  &__label {
+    margin: 0 1.5rem 0 0.5rem;
+    user-select: none;
+    opacity: 0.5;
+
+    &--checked {
+      opacity: 1;
+    }
+  }
+
+  &__checked-icon {
+    user-select: none;
+    width: 20px;
+  }
+}

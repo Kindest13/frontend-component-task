@@ -1,0 +1,15 @@
+.permission-checkboxes {
+  margin: 1.5rem 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__label {
+    font-weight: bold;
+  }
+  
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

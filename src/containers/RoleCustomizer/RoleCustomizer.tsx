@@ -1,17 +1,19 @@
 import React, { useState, FC } from "react";
-import Customization from '../customization/customization';
-import Save from '../../components/save/save';
+import RoleSelector from '../../components/RoleSelector/RoleSelector';
+import PermissionCheckboxes from '../../components/PermissionCheckboxes/PermissionCheckboxes';
+import Save from '../../components/SavePermissionsButton/SavePermissionsButton';
 import {
+  RoleCustomizerProps,
   ListRole,
   GetCustomRole,
-  OnChangeSelected,
   OnCustomChange,
   Right,
-  OnSave
+  OnOpenSelect,
+  OnCheck
 } from './types';
-import './form.css';
+import './roleCustomizer.scss';
 
-const Form: FC<{}> = () => {
+const RoleCustomizer: FC<RoleCustomizerProps> = ({onSelect , onSave}) => {
   const [listRoles, setListRoles] = useState<ListRole[]>([
     {
       id: 1,
@@ -119,44 +121,56 @@ const Form: FC<{}> = () => {
       ]
     },
   ]);
+  
   const [selectedRole, setSelectedRole] = useState<ListRole>(listRoles[0]);
+  const [opened, setOpened] = useState<boolean>(false);
+
+  const onOpenSelect: OnOpenSelect = () => setOpened(!opened);
+
+  const onCheck: OnCheck = (label, value, type) => selectedRole.change && onCustomChange(label, value, type);
+
   const getCustomRole: GetCustomRole = (list) => list.find(({role}) => role === 'Custom');
-  const onChangeSelected: OnChangeSelected = (selected) => {
-    if(typeof selected !== "string") {
-      selected = selected.currentTarget.getAttribute("data-value");
-    }
-    const newRole = listRoles.find(({role}) => role === selected);
-    setSelectedRole(newRole);
-    return newRole;
-  }
 
   const onCustomChange: OnCustomChange = (key, value, type) => {
     const checksType: string = type.toLowerCase();
-    const newListRoles: ListRole[] = JSON.parse(JSON.stringify(listRoles));
-    const customRole: ListRole = getCustomRole(newListRoles);
-    const customRoleRightsType: Right[] = customRole[checksType];
-    for(let i = 0, length = customRoleRightsType.length; i < length; i++) {
-      const right = customRoleRightsType[i];
-      if(right.hasOwnProperty(key)) {
-        right[key] = !value;
+    const newListRoles: ListRole[] = listRoles.map(listRole => {
+      if(listRole.role === 'Custom') {
+        const customRoleRightsType: Right[] = [...listRole[checksType]];
+        customRoleRightsType.forEach(right => {
+          if(typeof right[key] === 'boolean') {
+            right[key] = !value;
+          }
+        })
+        listRole[checksType] = customRoleRightsType;
       }
-    }
+
+      return listRole;
+    })
     setListRoles(newListRoles);
     setSelectedRole(getCustomRole(newListRoles));
   }
-
-  const onSave: OnSave = () => onChangeSelected(selectedRole.role);
+  
 
   return (
-    <div className="form">
-      <Customization
-        onSelect={onChangeSelected}
+    <div className="role-customizer">
+      <RoleSelector
         selectedRole={selectedRole}
-        onCustomChange={onCustomChange}
-        roles={listRoles} />
+        onOpenSelect={onOpenSelect}
+        opened={opened}
+        roles={listRoles}
+        onSelect={onSelect} />
+      <PermissionCheckboxes
+        checks={selectedRole.folders}
+        onCheck={onCheck}
+        type="Folders" />
+      <hr className="role-customizer__horizontal-line" />
+      <PermissionCheckboxes
+        checks={selectedRole.gems}
+        onCheck={onCheck}
+        type="Gems" />
       <Save onSave={onSave} />
     </div>
   );
 }
 
-export default Form;
+export default RoleCustomizer;
