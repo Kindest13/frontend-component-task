@@ -1,23 +1,20 @@
-.button {
+.savePermissionsButton {
   text-transform: uppercase;
   border: none;
   margin-top: 3rem;
   padding: 0.7rem 5rem;
   cursor: pointer;
   outline: none;
-}
-
-.button:hover {
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.button:active {
-  transform: translateY(2px);
-}
-
-.save_button {
   background-color: #fa6b30;
   color: #ffffff;
   font-size: 1.2rem;
   letter-spacing: 0.5px;
+
+  &:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(2px);
+  }
 }

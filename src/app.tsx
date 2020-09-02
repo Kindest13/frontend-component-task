@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Form from "./containers/form/form";
-import './app.css';
+import RoleCustomizer from "./containers/RoleCustomizer/RoleCustomizer";
+import './app.scss';
 
-ReactDOM.render(<Form />, document.getElementById("app"));
+ReactDOM.render(<RoleCustomizer />, document.getElementById("app"));
