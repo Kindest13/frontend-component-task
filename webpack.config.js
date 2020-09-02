@@ -28,13 +28,8 @@ module.exports = {
         }
       },
       {
-        test: /\.(scss|css)$/,
-        use: [
-          'style-loader',
-          {
-            loader: require.resolve('css-loader')
-          }
-        ]
+        test: /\.(s*)css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
       }
     ]
   },

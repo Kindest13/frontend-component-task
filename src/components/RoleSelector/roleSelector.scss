@@ -1,0 +1,65 @@
+.role-selector {
+  display: flex;
+  position: relative;
+  align-items: center;
+  user-select: none;
+
+  &__list-wrapper {
+    display: flex;
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 2;
+    border: 1px solid #808080;
+  }
+
+  &__label {
+    align-self: flex-start;
+    font-weight: bold;
+    margin: 2rem 0.7rem 0 0;
+  }
+
+  &__dropdown-list {
+    list-style: none;
+    max-height: 28px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    transition: max-height 0.3s;
+
+    &--opened {
+      max-height: 500px;
+      transition: max-height 1s;
+    }
+
+    &__option {
+      padding: 0.3rem;
+      width: 100%;
+      padding-right: 3.5rem;
+      cursor: pointer;
+
+      &:first-child:hover {
+        background-color: #ffffff;
+        color: #000000;
+        cursor: default;
+      }
+
+      &:hover {
+        background-color: #fa6d30;
+        color: #ffffff;
+      }
+    }
+    
+    &__collapse-arrow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0.6rem 0.5rem 0 0;
+      cursor: pointer;
+      transition: transform 0.2s;
+  
+      &--opened {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
