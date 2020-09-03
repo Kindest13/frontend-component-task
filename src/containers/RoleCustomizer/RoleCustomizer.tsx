@@ -131,6 +131,8 @@ const RoleCustomizer: FC<RoleCustomizerProps> = ({onSelect , onSave}) => {
 
   const getCustomRole: GetCustomRole = (list) => list.find(({role}) => role === 'Custom');
 
+  // const onRoleSelect = () => setSelectedRole(onSelect());
+
   const onCustomChange: OnCustomChange = (key, value, type) => {
     const checksType: string = type.toLowerCase();
     const newListRoles: ListRole[] = listRoles.map(listRole => {

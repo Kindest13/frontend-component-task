@@ -4,6 +4,7 @@ import SavePermissionsButtonProps from './types';
 
 const SavePermissionsButton: FC<SavePermissionsButtonProps> = ({ onSave }) => (
   <button
+    data-testid="save-button"
     onClick={onSave}
     className="savePermissionsButton">
       Save
